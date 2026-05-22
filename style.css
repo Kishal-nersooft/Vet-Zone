@@ -1451,6 +1451,11 @@ h1, h2, h3, h4 {
   margin-top: 1rem;
 }
 
+.footer-col a.btn-primary,
+.footer-col a.btn-primary:hover {
+  color: var(--white);
+}
+
 .footer-bottom {
   display: flex;
   flex-wrap: wrap;
