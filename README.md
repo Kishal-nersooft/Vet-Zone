@@ -33,7 +33,15 @@ Then visit [http://localhost:8000](http://localhost:8000).
 docker compose up --build
 ```
 
-The site is available at [http://localhost:8080](http://localhost:8080).
+The app listens on port **5010** inside the container. Nothing is published to the host by default.
+
+To open it in a browser, publish 5010 for that run:
+
+```bash
+docker compose run --publish 5010:5010 --build --rm web
+```
+
+Then visit [http://localhost:5010](http://localhost:5010).
 
 ### Run in the background
 
@@ -51,12 +59,10 @@ docker compose down
 
 ```bash
 docker build -t vetzone .
-docker run -p 8080:80 vetzone
+docker run -p 5010:5010 vetzone
 ```
 
 ## Docker details
 
-- **Image**: `nginx:1.27-alpine` serves `index.html`, `style.css`, and `script.js` from `/usr/share/nginx/html/`.
-- **Port**: Host `8080` maps to container port `80`.
-
-To change the host port, edit `ports` in `docker-compose.yml` (e.g. `"3000:80"`).
+- **Image**: `python:3.12-alpine` serves static files with Python’s built-in HTTP server.
+- **Port**: The app listens on **5010** inside the container. No `ports` in `docker-compose.yml` and no `EXPOSE` in the Dockerfile.

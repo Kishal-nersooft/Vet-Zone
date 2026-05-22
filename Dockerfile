@@ -1,7 +1,6 @@
-FROM nginx:1.27-alpine
+FROM python:3.12-alpine
 
-COPY index.html style.css script.js /usr/share/nginx/html/
+WORKDIR /app
+COPY index.html style.css script.js .
 
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["python", "-m", "http.server", "5010", "--bind", "0.0.0.0"]
